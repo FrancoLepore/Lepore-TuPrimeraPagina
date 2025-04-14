@@ -11,6 +11,14 @@
         <a href={% url "anotarse" %}>Anotarse</a>
         <a href={% url "lista_de_alumnos" %}>Lista de Alumnos</a>
     </nav>
-    <h1>Bienvenidos a Studix</h1>
+    <h1>Listado de Alumnos</h1>
+    
+    <ul>
+        {% for alumno in alumnos %}
+        <li>
+            {{alumno}}
+        </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

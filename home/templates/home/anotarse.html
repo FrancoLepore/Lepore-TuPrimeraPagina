@@ -9,7 +9,16 @@
     <nav>
         <a href={% url "inicio" %}>Inicio</a>
         <a href={% url "anotarse" %}>Anotarse</a>
+        <a href={% url "lista_de_alumnos" %}>Lista de Alumnos</a>
     </nav>
     <h1>Anotate en el curso que mas te guste!</h1>
+    <form action="{% url "anotarse" %}" method="POST">
+        {% csrf_token %}
+
+
+        {{formulario}}
+        <input type="submit" value="Anotarse">
+
+    </form>
 </body>
 </html>
