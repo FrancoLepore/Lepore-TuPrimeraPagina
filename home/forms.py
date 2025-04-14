@@ -9,4 +9,5 @@ class Anotarse(forms.ModelForm):
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'apellido': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'curso': forms.Select(attrs={'class': 'form-select'}),
         }
