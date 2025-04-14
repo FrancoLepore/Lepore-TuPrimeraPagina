@@ -7,9 +7,3 @@ class Alumno(models.Model):
 
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
-
-class Curso(models.Model):
-    nombre = models.CharField(max_length=100)
-    descripcion = models.TextField()
-    fecha_inicio = models.DateField()
-    fecha_fin = models.DateField()

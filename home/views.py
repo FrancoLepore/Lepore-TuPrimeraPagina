@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import Anotarse
-from .models import Alumno, Curso
+from .models import Alumno
 
 def inicio(request):
     return render(request, "home/inicio.html") 
