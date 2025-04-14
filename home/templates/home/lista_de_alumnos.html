@@ -12,7 +12,8 @@
         <a href={% url "lista_de_alumnos" %}>Lista de Alumnos</a>
     </nav>
     <h1>Listado de Alumnos</h1>
-    
+
+    {% if alumnos %}
     <ul>
         {% for alumno in alumnos %}
         <li>
@@ -20,5 +21,10 @@
         </li>
         {% endfor %}
     </ul>
+    {% else %}
+    <p>No hay alumnos registrados actualmente</p>
+    {% endif %}
+    
+
 </body>
 </html>

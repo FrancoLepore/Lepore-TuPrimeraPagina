@@ -17,7 +17,7 @@ def anotarse(request):
                 email=info["email"]
             )
             alumno.save()
-            return redirect("inicio")
+            return redirect("lista_de_alumnos")
 
     else:
         formulario = Anotarse()
