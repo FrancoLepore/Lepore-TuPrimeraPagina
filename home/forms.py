@@ -1,11 +1,12 @@
 from django import forms 
+from .models import Alumno
 
-class Anotarse(forms.Form):
-    nombre = forms.CharField(max_length=100)
-    apellido = forms.CharField(max_length=100)
-    email = forms.EmailField()
-    curso = forms.ChoiceField(choices=[
-        ('curso1', 'Curso 1'),
-        ('curso2', 'Curso 2'),
-        ('curso3', 'Curso 3'),
-    ])
+class Anotarse(forms.ModelForm):
+    class Meta:
+        model = Alumno
+        fields = '__all__'
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'apellido': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+        }
