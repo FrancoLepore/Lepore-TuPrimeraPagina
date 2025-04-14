@@ -1,24 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Anotarse | STUDIX</title>
+    <!-- Bootstrap 5.3 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <nav>
-        <a href={% url "inicio" %}>Inicio</a>
-        <a href={% url "anotarse" %}>Anotarse</a>
-        <a href={% url "lista_de_alumnos" %}>Lista de Alumnos</a>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'inicio' %}">STUDIX</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'inicio' %}">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'anotarse' %}">Anotarse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'lista_de_alumnos' %}">Lista de Alumnos</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
-    <h1>Anotate en el curso que mas te guste!</h1>
-    <form action="{% url "anotarse" %}" method="POST">
-        {% csrf_token %}
 
+    <!-- Main Content -->
+    <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <h1 class="mb-4 text-center">¡Anotate en el curso que más te guste!</h1>
 
-        {{formulario}}
-        <input type="submit" value="Anotarse">
+                <form action="{% url 'anotarse' %}" method="POST" class="p-4 border rounded shadow-sm bg-light">
+                    {% csrf_token %}
+                    {{ formulario|safe }}
+                    <div class="d-grid mt-3">
+                        <button type="submit" class="btn btn-primary">Anotarse</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
 
-    </form>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
