@@ -10,6 +10,7 @@ class Alumno(models.Model):
     apellido = models.CharField(max_length=100)
     email = models.EmailField()
     curso = models.CharField(max_length=2, choices=CURSO_CHOICES)
+    fecha_anotado = models.DateField(null= True) #habilita nulls
 
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
