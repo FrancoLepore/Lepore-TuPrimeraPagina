@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Alumnos | STUDIX</title>
+    <title>Anotarse | STUDIX</title>
     <!-- Bootstrap 5.3 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -22,10 +22,10 @@
                         <a class="nav-link" href="{% url 'inicio' %}">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'anotarse' %}">Anotarse</a>
+                        <a class="nav-link active" href="{% url 'anotarse' %}">Anotarse</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'lista_de_alumnos' %}">Lista de Alumnos</a>
+                        <a class="nav-link" href="{% url 'lista_de_alumnos' %}">Lista de Alumnos</a>
                     </li>
                 </ul>
             </div>
@@ -34,24 +34,20 @@
 
     <!-- Main Content -->
     <main class="container my-5">
-        <h1 class="text-center mb-4">Listado de Alumnos</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <h1 class="mb-4 text-center"> Elimina en caso de ser necesario</h1>
 
-        {% if alumnos %}
-        <ul class="list-group">
-            {% for alumno in alumnos %}
-            <li class="list-group-item">
-                {{ alumno }} 
-                | <a href="{% url 'detalles' alumno.id %}">Ver Detalles</a> 
-                | <a href="{% url 'modificar' alumno.id %}">Modificar</a>
-                | <a href="{% url 'eliminar' alumno.id %}">Eliminar</a>
-            </li>
-            {% endfor %}
-        </ul>
-        {% else %}
-        <div class="alert alert-warning text-center" role="alert">
-            No hay alumnos registrados actualmente.
+                <form action="{% url 'eliminar' alumno.id %}" method="POST" class="p-4 border rounded shadow-sm bg-light">
+                    {% csrf_token %}
+                    {{ form|safe }}
+                    <div class="d-grid mt-3">
+                        <p class="text-danger">¿Estás seguro de que deseas eliminar el usuario {{alumno}}?</p>
+                        <button type="submit" class="btn btn-primary">Confirmar Borrado</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        {% endif %}
     </main>
 
     <!-- Bootstrap JS -->

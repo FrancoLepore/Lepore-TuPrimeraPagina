@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import Anotarse
 from .models import Alumno
-from django.views.generic import ListView, DetailView, UpdateView
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy #basicamente un redirect
 
 def inicio(request):
@@ -48,3 +48,9 @@ class VistaModificarAlumno(UpdateView):
     template_name = "home/modificar_alumno.html"
     fields = ["nombre", "apellido", "email"] #con esto armamos los campos para el formulario
     success_url = reverse_lazy("lista_de_alumnos") # te lleva a donde quieras una vez que se modifico el alumno, le pones el name de la url
+
+class VistaEliminarAlumno(DeleteView):
+    model = Alumno
+    template_name = "home/eliminar_alumno.html"
+    success_url = reverse_lazy("lista_de_alumnos") 
+
