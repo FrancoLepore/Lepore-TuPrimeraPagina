@@ -1,18 +1,37 @@
-{%extends "home/base.html"%}
-{% block content %}
-    <main class="container my-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6">
-                <h1 class="mb-4 text-center"> Modifica los datos que consideres necesario!</h1>
+{% extends 'home/base.html' %}
 
-                <form action="{% url 'modificar' alumno.id %}" method="POST" class="p-4 border rounded shadow-sm bg-light">
-                    {% csrf_token %}
-                    {{ form|safe }}
-                    <div class="d-grid mt-3">
-                        <button type="submit" class="btn btn-primary">Modificar</button>
-                    </div>
-                </form>
-            </div>
+{% block content %}
+<main class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <h1 class="mb-4 text-center">¡Modificá los datos del alumno!</h1>
+
+            <form method="POST" class="p-4 border rounded shadow-sm bg-light">
+                {% csrf_token %}
+
+                <div class="mb-3 text-start">
+                    <label for="id_nombre" class="form-label">Nombre:</label>
+                    <input type="text" name="nombre" id="id_nombre" class="form-control" value="{{ form.nombre.value }}">
+                </div>
+
+                <div class="mb-3 text-start">
+                    <label for="id_apellido" class="form-label">Apellido:</label>
+                    <input type="text" name="apellido" id="id_apellido" class="form-control" value="{{ form.apellido.value }}">
+                </div>
+
+                <div class="mb-3 text-start">
+                    <label for="id_email" class="form-label">Email:</label>
+                    <input type="email" name="email" id="id_email" class="form-control" value="{{ form.email.value }}">
+                </div>
+
+                <div class="d-grid mt-4">
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+                <div class="d-grid mt-2">
+                    <a href="{% url 'lista_de_alumnos' %}" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
         </div>
-    </main>
+    </div>
+</main>
 {% endblock %}
