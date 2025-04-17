@@ -11,3 +11,4 @@ class Anotarse(forms.ModelForm):
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'curso': forms.Select(attrs={'class': 'form-select'}),
         }
+    fecha_anotado = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))

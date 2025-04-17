@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import Anotarse
 from .models import Alumno
+from django.views.generic import ListView, DetailView, UpdateView
+from django.urls import reverse_lazy #basicamente un redirect
 
 def inicio(request):
     return render(request, "home/inicio.html") 
@@ -14,7 +16,9 @@ def anotarse(request):
             alumno = Alumno(
                 nombre=info["nombre"],
                 apellido=info["apellido"],
-                email=info["email"]
+                email=info["email"],
+                curso=info["curso"],
+                fecha_anotado=info["fecha_anotado"],
             )
             alumno.save()
             return redirect("lista_de_alumnos")
@@ -27,3 +31,20 @@ def anotarse(request):
 def lista_de_alumnos(request):
     alumnos = Alumno.objects.all()
     return render(request, "home/lista_de_alumnos.html", {"alumnos": alumnos})
+
+def detalle_alumno(request, alumno_en_especifico):
+    alumno = Alumno.objects.get(id=alumno_en_especifico)
+    return render(request, "home/detalle_alumno.html", {"alumno": alumno})
+
+#esta es una clase basada en vista. ES LO MISMO QUE LA DE ARRIBA ASI
+
+class VistaDetalleAlumno(DetailView):
+    model = Alumno #AUTOMATICAMENTE genera un "alumno" en minuscula, lo que permite que usando el mismo html funque todo.
+    template_name = "home/detalle_alumno.html"
+
+#es una clase de vista. pero es oara MODIFICAR (update)
+class VistaModificarAlumno(UpdateView):
+    model = Alumno
+    template_name = "home/modificar_alumno.html"
+    fields = ["nombre", "apellido", "email"] #con esto armamos los campos para el formulario
+    success_url = reverse_lazy("lista_de_alumnos") # te lleva a donde quieras una vez que se modifico el alumno, le pones el name de la url
