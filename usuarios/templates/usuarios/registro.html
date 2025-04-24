@@ -4,13 +4,13 @@
     <main class="container my-5">
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6">
-                <h1 class="mb-4 text-center">¡Inicia Sesion!</h1>
+                <h1 class="mb-4 text-center">¡Registrate!</h1>
 
-                <form action="{% url 'login' %}" method="POST" class="p-4 border rounded shadow-sm bg-light">
+                <form action="{% url 'registro' %}" method="POST" class="p-4 border rounded shadow-sm bg-light">
                     {% csrf_token %}
                     {{ formulario|safe }}
                     <div class="d-grid mt-3">
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="submit" class="btn btn-primary">Registrarse</button>
                     </div>
                 </form>
             </div>
