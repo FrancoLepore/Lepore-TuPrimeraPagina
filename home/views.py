@@ -4,10 +4,13 @@ from .forms import Anotarse
 from .models import Alumno
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy #basicamente un redirect
+from django.contrib.auth.mixins import LoginRequiredMixin #para que solo los usuarios logueados puedan ver la lista de alumnos
+from django.contrib.auth.decorators import login_required #decorador para que solo los usuarios logueados puedan ver la lista de alumnos
 
 def inicio(request):
     return render(request, "home/inicio.html") 
 
+@login_required #esto es para que solo los usuarios logueados puedan ver la lista de alumnos
 def anotarse(request):
     if request.method == "POST":
         formulario = Anotarse(request.POST)
@@ -43,13 +46,13 @@ class VistaDetalleAlumno(DetailView):
     template_name = "home/detalle_alumno.html"
 
 #es una clase de vista. pero es oara MODIFICAR (update)
-class VistaModificarAlumno(UpdateView):
+class VistaModificarAlumno(LoginRequiredMixin,UpdateView):
     model = Alumno
     template_name = "home/modificar_alumno.html"
     fields = ["nombre", "apellido", "email"] #con esto armamos los campos para el formulario
     success_url = reverse_lazy("lista_de_alumnos") # te lleva a donde quieras una vez que se modifico el alumno, le pones el name de la url
 
-class VistaEliminarAlumno(DeleteView):
+class VistaEliminarAlumno(LoginRequiredMixin,DeleteView):
     model = Alumno
     template_name = "home/eliminar_alumno.html"
     success_url = reverse_lazy("lista_de_alumnos") 
