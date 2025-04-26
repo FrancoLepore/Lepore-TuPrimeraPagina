@@ -31,7 +31,11 @@
                     {% if request.user.is_authenticated %}
                     
                     <li class="nav-item">
-                        <a href={% url "editar_perfil" %}> {{request.user.username}}</a>
+                        <a href={% url "editar_perfil" %}> 
+                            {% if request.user.infoextra.avatar %}
+                            <img src= {{request.user.infoextra.avatar.url}} alt="" height = 40px >
+                            {% endif %}
+                            {{request.user.username}}</a>
                     </li>
 
                     <li class="nav-item">
