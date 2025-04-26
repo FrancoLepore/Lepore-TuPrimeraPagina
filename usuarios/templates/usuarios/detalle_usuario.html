@@ -33,6 +33,12 @@
                             <p class="text-muted">Email no disponible</p>
                         {% endif %}
 
+                        {% if object.fecha_creacion %}
+                        <p><strong>Fecha de creación:</strong> {{ object.fecha_creacion|date:"d/m/Y H:i" }}</p>
+                    {% else %}
+                        <p class="text-muted">Fecha de creación no disponible</p>
+                    {% endif %}
+                    
                         <div class="mt-4">
                             <a href="{% url 'editar_perfil' %}" class="btn btn-outline-primary">Editar Perfil</a>
                         </div>
