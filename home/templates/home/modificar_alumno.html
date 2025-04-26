@@ -8,21 +8,8 @@
 
             <form method="POST" class="p-4 border rounded shadow-sm bg-light">
                 {% csrf_token %}
-
-                <div class="mb-3 text-start">
-                    <label for="id_nombre" class="form-label">Nombre:</label>
-                    <input type="text" name="nombre" id="id_nombre" class="form-control" value="{{ form.nombre.value }}">
-                </div>
-
-                <div class="mb-3 text-start">
-                    <label for="id_apellido" class="form-label">Apellido:</label>
-                    <input type="text" name="apellido" id="id_apellido" class="form-control" value="{{ form.apellido.value }}">
-                </div>
-
-                <div class="mb-3 text-start">
-                    <label for="id_email" class="form-label">Email:</label>
-                    <input type="email" name="email" id="id_email" class="form-control" value="{{ form.email.value }}">
-                </div>
+                
+                {{ form.as_p }}
 
                 <div class="d-grid mt-4">
                     <button type="submit" class="btn btn-primary">Guardar Cambios</button>
