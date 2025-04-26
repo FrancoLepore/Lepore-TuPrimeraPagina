@@ -16,11 +16,25 @@
             background-position: center;
             background-repeat: no-repeat;
             min-height: 100vh;
+            color: white; /* 🔥 Texto general en blanco */
         }
 
-        .background-overlay {
-            background-color: rgba(0, 0, 0, 0.3); /* Opcional: un poco de oscurecimiento */
-            min-height: 100vh;
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8) !important;
+        }
+
+        .navbar .nav-link {
+            color: white !important;
+        }
+
+        /* 🎯 EXCEPCIONES: Formularios con letras negras */
+        form, form label, form input, form textarea, form select {
+            color: black;
+        }
+
+        /* Opcional: inputs con fondo blanco */
+        .form-control {
+            background-color: white;
         }
     </style>
 
@@ -28,7 +42,7 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="{% url 'inicio' %}">STUDIX</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -47,7 +61,6 @@
                     </li>
 
                     {% if request.user.is_authenticated %}
-                    
                     <li class="nav-item">
                         <a href="{% url 'editar_perfil' %}" class="nav-link">
                             {% if request.user.infoextra.avatar %}
@@ -65,14 +78,12 @@
                     </li>
 
                     {% else %}
-                    
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'registro' %}">Registrarse</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'login' %}">Login</a>
                     </li>
-
                     {% endif %}
                 </ul>
             </div>
@@ -80,7 +91,7 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="background-overlay">
+    <div class="container py-4">
         {% block content %}
         {% endblock %}
     </div>
