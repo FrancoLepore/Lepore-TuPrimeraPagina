@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 from django import forms
 from django.contrib.auth.models import User
 
@@ -51,3 +51,19 @@ class FormularioEdicionPerfil(UserChangeForm):
     class Meta:
         model = User
         fields = ["email", "first_name", "last_name", "avatar"]
+
+class FormularioLogin(AuthenticationForm):
+    username = forms.CharField(
+        label="Usuario",
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Ingresá tu usuario'
+        })
+    )
+    password = forms.CharField(
+        label="Contraseña",
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Ingresá tu contraseña'
+        })
+    )
