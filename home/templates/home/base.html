@@ -61,13 +61,16 @@
                     </li>
 
                     {% if request.user.is_authenticated %}
+
                     <li class="nav-item">
-                        <a href="{% url 'editar_perfil' %}" class="nav-link">
-                            {% if request.user.infoextra.avatar %}
-                                <img src="{{ request.user.infoextra.avatar.url }}" alt="" height="40px" class="rounded-circle me-2">
-                            {% endif %}
-                            {{ request.user.username }}
-                        </a>
+                        <form action="{% url 'editar_perfil' %}" method="GET" class="d-inline">
+                            <button type="submit" class="nav-link btn btn-link p-0 m-0 d-flex align-items-center" style="color: white; text-decoration: none;">
+                                {% if request.user.infoextra.avatar %}
+                                    <img src="{{ request.user.infoextra.avatar.url }}" alt="Avatar" height="40" width="40" class="rounded-circle me-2" style="object-fit: cover;">
+                                {% endif %}
+                                <span>{{ request.user.username }}</span>
+                            </button>
+                        </form>
                     </li>
 
                     <li class="nav-item">
