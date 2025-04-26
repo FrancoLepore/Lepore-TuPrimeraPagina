@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
 from django.contrib.auth.models import User
 
@@ -15,3 +15,13 @@ class FormularioRegistro(UserCreationForm):
                     "email": "Introduce una dirección de correo electrónico válida.",
                     "password1": "La contraseña debe tener al menos 8 caracteres, incluyendo letras y números.",
                     "password2": "Repite la contraseña para confirmarla."}
+        
+class FormularioEdicionPerfil(UserChangeForm):
+    password = None
+    email = forms.EmailField(label="Email", required=False)
+    first_name = forms.CharField(label="Nombre")
+    last_name = forms.CharField(label="Apellido")
+
+    class Meta:
+        model = User
+        fields = ["email", "first_name", "last_name"]

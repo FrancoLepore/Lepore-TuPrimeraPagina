@@ -29,8 +29,11 @@
                     </li>
 
                     {% if request.user.is_authenticated %}
+                    
+                    <li class="nav-item">
+                        <a href={% url "editar_perfil" %}> {{request.user.username}}</a>
+                    </li>
 
-                    <a href="#"> {{request.user.username}}</a>
                     <li class="nav-item">
                         <form action="{% url 'logout' %}" method="POST">
                             {% csrf_token %}
