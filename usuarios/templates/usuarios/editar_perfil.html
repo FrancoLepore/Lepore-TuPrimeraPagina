@@ -1,19 +1,27 @@
 {% extends 'home/base.html' %}
 
 {% block content %}
-    <main class="container my-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6">
-                <h1 class="mb-4 text-center">¡Edita tu Perfil!</h1>
+<main class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <h1 class="mb-4 text-center">¡Edita tu Perfil!</h1>
 
-                <form action="{% url 'editar_perfil' %}" method="POST" enctype="multipart/form-data" class="p-4 border rounded shadow-sm bg-light">
-                    {% csrf_token %}
-                    {{ formulario|safe }}
-                    <div class="d-grid mt-3">
-                        <button type="submit" class="btn btn-primary">Actualizar</button>
-                    </div>
-                </form>
+            <form action="{% url 'editar_perfil' %}" method="POST" enctype="multipart/form-data" class="p-4 border rounded shadow-sm bg-light">
+                {% csrf_token %}
+                
+                {{ formulario|safe }}
+                
+                <div class="d-grid mt-3">
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                </div>
+            </form>
+
+            <!-- Botón fuera del form -->
+            <div class="d-grid mt-2">
+                <a href="{% url 'detalle_usuario' request.user.pk %}" class="btn btn-info">Ver mi Perfil</a>
             </div>
+
         </div>
-    </main>
+    </div>
+</main>
 {% endblock %}

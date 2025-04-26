@@ -1,0 +1,46 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<main class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8">
+            <div class="card shadow-lg border-0 p-4">
+                <div class="row g-4 align-items-center">
+
+                    <!-- Columna Avatar -->
+                    <div class="col-md-4 text-center">
+                        {% if object.avatar %}
+                            <img src="{{ object.avatar.url }}" alt="Avatar de {{ object.user.username }}" class="rounded-circle img-fluid" style="width: 180px; height: 180px; object-fit: cover;">
+                        {% else %}
+                            <div class="rounded-circle bg-secondary d-inline-block" style="width: 180px; height: 180px;"></div>
+                            <p class="text-muted mt-2">Sin avatar</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Columna Datos -->
+                    <div class="col-md-8">
+                        <h2 class="mb-3">{{ object.user.username }}</h2>
+
+                        {% if object.user.first_name or object.user.last_name %}
+                            <p><strong>Nombre completo:</strong> {{ object.user.first_name }} {{ object.user.last_name }}</p>
+                        {% else %}
+                            <p class="text-muted">Nombre no disponible</p>
+                        {% endif %}
+
+                        {% if object.user.email %}
+                            <p><strong>Email:</strong> {{ object.user.email }}</p>
+                        {% else %}
+                            <p class="text-muted">Email no disponible</p>
+                        {% endif %}
+
+                        <div class="mt-4">
+                            <a href="{% url 'editar_perfil' %}" class="btn btn-outline-primary">Editar Perfil</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

@@ -4,6 +4,7 @@ from django.contrib.auth import login as django_login
 from usuarios.forms import FormularioRegistro, FormularioEdicionPerfil
 from django.contrib.auth.decorators import login_required
 from usuarios.models import InfoExtra
+from django.views.generic import DetailView
 
 def login(request):
 
@@ -54,3 +55,8 @@ def editar_perfil(request):
         formulario = FormularioEdicionPerfil(initial = {"avatar": infoextra.avatar},instance = request.user)
 
     return render(request, "usuarios/editar_perfil.html", context={"formulario": formulario})
+
+class VistaDetalleUsuario(DetailView):
+    model = InfoExtra
+    template_name = "usuarios/detalle_usuario.html"
+

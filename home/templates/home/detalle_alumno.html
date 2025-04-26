@@ -1,11 +1,23 @@
-    <!-- Main Content -->
-{%extends 'home/base.html' %}
-{% block content %}
-    <main class="container my-5 text-center">
-        <h1 class="display-4">Informacion sobre: {{alumno}}</h1>
-        <p class="lead"> Nombre completo: {{alumno.nombre}} {{alumno.apellido}}</p>
-        <p class="lead"> Contacto: {{alumno.email}}</p>
-        <p class="lead"> Fecha de inscripcion: {{alumno.fecha_anotado}}</p>
-    </main>
-{% endblock %}
+{% extends 'home/base.html' %}
 
+{% block content %}
+<main class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body text-center">
+                    <h1 class="card-title display-5 mb-4">Información sobre {{ alumno.nombre }} {{ alumno.apellido }}</h1>
+
+                    <p class="lead"><strong>Nombre completo:</strong> {{ alumno.nombre }} {{ alumno.apellido }}</p>
+                    <p class="lead"><strong>Email de contacto:</strong> {{ alumno.email }}</p>
+                    <p class="lead"><strong>Fecha de inscripción:</strong> {{ alumno.fecha_anotado|date:"d/m/Y" }}</p>
+
+                    <div class="d-grid mt-4">
+                        <a href="{% url 'lista_de_alumnos' %}" class="btn btn-outline-primary">Volver a la lista de alumnos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
